@@ -14,8 +14,9 @@ public class Ataque {
     private String nome;
     private String descricao;
     private int pontosDePoder;
+    private Tipo tipo;
 
-    public Ataque(int forca, Categoria categoria, int acuracia, String nome, String descricao, int pontosDePoder) throws AcuraciaInvalidaException, ForcaInvalidaException {
+    public Ataque(int forca, Categoria categoria, int acuracia, String nome, String descricao, int pontosDePoder, Tipo tipo) throws AcuraciaInvalidaException, ForcaInvalidaException {
         verificarAcuraciaEntreZeroeCem(acuracia);
         verificarForcaMenorQueZero(forca);
         this.forca = forca;
@@ -24,6 +25,7 @@ public class Ataque {
         this.nome = nome;
         this.descricao = descricao;
         this.pontosDePoder = pontosDePoder;
+        this.tipo = tipo;
     }
 
     private void verificarForcaMenorQueZero(int forca) throws ForcaInvalidaException {

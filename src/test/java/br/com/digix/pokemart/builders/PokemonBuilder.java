@@ -1,5 +1,6 @@
 package br.com.digix.pokemart.builders;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class PokemonBuilder {
     private int nivel = 5;
     private List<Ataque> ataques = new ArrayList<>();
 
-    public PokemonBuilder() throws AcuraciaInvalidaException, ForcaInvalidaException {
+    public PokemonBuilder() throws AcuraciaInvalidaException, ForcaInvalidaException, IOException {
         this.ataques.add(new AtaqueBuilder().construir());
     }
 

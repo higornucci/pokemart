@@ -1,9 +1,12 @@
 package br.com.digix.pokemart.models;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import br.com.digix.pokemart.builders.AtaqueBuilder;
+import br.com.digix.pokemart.builders.TipoBuilder;
 import br.com.digix.pokemart.models.enums.Categoria;
 import br.com.digix.pokemart.models.exceptions.AcuraciaInvalidaException;
 import br.com.digix.pokemart.models.exceptions.ForcaInvalidaException;
@@ -53,5 +56,17 @@ public class AtaqueTest {
         ()-> {
             new AtaqueBuilder().comForca(-1).construir();
         });
+    }
+
+    @Test
+    public void deve_ter_um_tipo() throws Exception {
+        // Arrange
+        Tipo tipo = new TipoBuilder().construir();
+
+        // Action
+        Ataque ataque = new AtaqueBuilder().comTipo(tipo).construir();
+
+        // Assert
+        Assertions.assertEquals(tipo, ataque.getTipo());
     }
 }
