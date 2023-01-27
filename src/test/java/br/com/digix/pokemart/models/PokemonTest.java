@@ -1,21 +1,23 @@
 package br.com.digix.pokemart.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import br.com.digix.pokemart.builders.AtaqueBuilder;
 import br.com.digix.pokemart.builders.PokemonBuilder;
-import br.com.digix.pokemart.models.exceptions.AcuraciaInvalidaException;
+import br.com.digix.pokemart.builders.TipoBuilder;
 import br.com.digix.pokemart.models.exceptions.AlturaInvalidaException;
 import br.com.digix.pokemart.models.exceptions.FelicidadeInvalidaException;
-import br.com.digix.pokemart.models.exceptions.ForcaInvalidaException;
 import br.com.digix.pokemart.models.exceptions.NaoPossuiAtaqueException;
 import br.com.digix.pokemart.models.exceptions.NivelInvalidoException;
 import br.com.digix.pokemart.models.exceptions.PesoInvalidoException;
 import br.com.digix.pokemart.models.exceptions.QuantidadeDeAtaquesInvalidaException;
+import br.com.digix.pokemart.models.exceptions.TipoInvalidoException;
 
 public class PokemonTest {
 
@@ -135,5 +137,36 @@ public class PokemonTest {
         ()-> {
             new PokemonBuilder().comAtaques(ataques).construir();
         });
+    }
+
+    @Test
+    public void deve_ter_um_tipo() throws Exception {
+        // Arrange
+        Tipo tipo = new TipoBuilder().construir();
+
+        // Action
+        Pokemon pokemon = new PokemonBuilder().comTipos(Collections.singletonList(tipo)).construir();
+
+        // Assert
+        Assertions.assertTrue(pokemon.getTipos().contains(tipo));;
+    }
+
+    @Test
+    public void deve_ter_pelo_menos_um_tipo() throws Exception {
+        Assertions.assertThrows(TipoInvalidoException.class,
+            () -> new PokemonBuilder().semTipo().construir()
+        );
+    }
+
+    @Test
+    public void nao_deve_ter_mais_que_dois_tipos() throws Exception {
+        List<Tipo> tipos = new ArrayList<>();
+        tipos.add(new TipoBuilder().construir());
+        tipos.add(new TipoBuilder().construir());
+        tipos.add(new TipoBuilder().construir());
+
+        Assertions.assertThrows(TipoInvalidoException.class,
+            () -> new PokemonBuilder().comTipos(tipos).construir()
+        );
     }
 }

@@ -1,7 +1,5 @@
 package br.com.digix.pokemart.models;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.digix.pokemart.models.Ataque;
 import br.com.digix.pokemart.models.Pokemon;
+import br.com.digix.pokemart.models.Tipo;
 import br.com.digix.pokemart.models.exceptions.AcuraciaInvalidaException;
 import br.com.digix.pokemart.models.exceptions.AlturaInvalidaException;
 import br.com.digix.pokemart.models.exceptions.FelicidadeInvalidaException;
@@ -14,6 +15,7 @@ import br.com.digix.pokemart.models.exceptions.NaoPossuiAtaqueException;
 import br.com.digix.pokemart.models.exceptions.NivelInvalidoException;
 import br.com.digix.pokemart.models.exceptions.PesoInvalidoException;
 import br.com.digix.pokemart.models.exceptions.QuantidadeDeAtaquesInvalidaException;
+import br.com.digix.pokemart.models.exceptions.TipoInvalidoException;
 
 public class PokemonBuilder {
 
@@ -24,9 +26,11 @@ public class PokemonBuilder {
     private int felicidade = 100;
     private int nivel = 5;
     private List<Ataque> ataques = new ArrayList<>();
+    private List<Tipo> tipos = new ArrayList<>();
 
     public PokemonBuilder() throws AcuraciaInvalidaException, ForcaInvalidaException, IOException {
         this.ataques.add(new AtaqueBuilder().construir());
+        this.tipos.add(new TipoBuilder().construir());
     }
 
     public PokemonBuilder comFelicidade(int felicidade) {
@@ -55,12 +59,22 @@ public class PokemonBuilder {
     }
 
     public Pokemon construir()
-            throws FelicidadeInvalidaException, AlturaInvalidaException, PesoInvalidoException, NivelInvalidoException, NaoPossuiAtaqueException, QuantidadeDeAtaquesInvalidaException {
-        return new Pokemon(nome, genero, altura, peso, felicidade, nivel, ataques);
+            throws FelicidadeInvalidaException, AlturaInvalidaException, PesoInvalidoException, NivelInvalidoException, NaoPossuiAtaqueException, QuantidadeDeAtaquesInvalidaException, TipoInvalidoException {
+        return new Pokemon(nome, genero, altura, peso, felicidade, nivel, ataques, tipos);
     }
 
     public PokemonBuilder comAtaques(List<Ataque> ataques) {
         this.ataques = ataques;
+        return this;
+    }
+
+    public PokemonBuilder semTipo() {
+        this.tipos = new ArrayList<>();
+        return this;
+    }
+
+    public PokemonBuilder comTipos(List<Tipo> tipos) {
+        this.tipos = tipos;
         return this;
     }
 }

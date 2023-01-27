@@ -8,6 +8,7 @@ import br.com.digix.pokemart.models.exceptions.NaoPossuiAtaqueException;
 import br.com.digix.pokemart.models.exceptions.NivelInvalidoException;
 import br.com.digix.pokemart.models.exceptions.PesoInvalidoException;
 import br.com.digix.pokemart.models.exceptions.QuantidadeDeAtaquesInvalidaException;
+import br.com.digix.pokemart.models.exceptions.TipoInvalidoException;
 import lombok.Getter;
 
 @Getter
@@ -20,14 +21,17 @@ public class Pokemon {
     private int felicidade;
     private int nivel;
     private List<Ataque> ataques;
+    private List<Tipo> tipos;
 
-    public Pokemon(String nome, char genero, float altura, float peso, int felicidade, int nivel, List<Ataque> ataques) throws FelicidadeInvalidaException, AlturaInvalidaException, PesoInvalidoException, NivelInvalidoException, NaoPossuiAtaqueException, QuantidadeDeAtaquesInvalidaException {
+    public Pokemon(String nome, char genero, float altura, float peso, int felicidade, int nivel, List<Ataque> ataques, List<Tipo> tipos) throws FelicidadeInvalidaException, AlturaInvalidaException, PesoInvalidoException, NivelInvalidoException, NaoPossuiAtaqueException, QuantidadeDeAtaquesInvalidaException, TipoInvalidoException {
         verificarFelicidadeEntreZeroECem(felicidade);
         verificarAlturaMenorQueZero(altura);
         verificarPesoMenorQueZero(peso);
         verificarNivelEntreZeroEUm(nivel);
         verificarSeNaoPossuiAtaques(ataques);
         verificarSePossuiMaisQueQuatroAtaques(ataques);
+        verificarSePossuiUmOuDoisTipos(tipos);
+        this.tipos = tipos;
         this.ataques = ataques;
         this.nome = nome;
         this.genero = genero;
@@ -35,6 +39,13 @@ public class Pokemon {
         this.peso = peso;
         this.felicidade = felicidade;
         this.nivel = nivel;
+    }
+
+    private void verificarSePossuiUmOuDoisTipos(List<Tipo> tipos) throws TipoInvalidoException {
+        int quantidadeDeTipos = tipos.size();
+        if(quantidadeDeTipos < 1 || quantidadeDeTipos > 2) {
+            throw new TipoInvalidoException();
+        }
     }
 
     private void verificarSePossuiMaisQueQuatroAtaques(List<Ataque> ataques) throws QuantidadeDeAtaquesInvalidaException {
