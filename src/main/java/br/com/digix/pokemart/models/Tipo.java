@@ -10,8 +10,8 @@ import javax.persistence.Lob;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @Entity
+@Getter
 @NoArgsConstructor
 public class Tipo {
 

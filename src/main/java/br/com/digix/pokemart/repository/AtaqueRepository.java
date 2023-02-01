@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.digix.pokemart.models.Tipo;
+import br.com.digix.pokemart.models.Ataque;
 
 @Repository
-public interface TipoRepository extends CrudRepository<Tipo, Long> {
-    public List<Tipo> findByNomeContainingIgnoreCase(String nome);
+public interface AtaqueRepository extends CrudRepository<Ataque, Long> {
+    List<Ataque> findByNomeContainingIgnoreCase(String nome);
 }
