@@ -2,6 +2,8 @@ package br.com.digix.pokemart.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,7 @@ public class Ataque {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int forca;
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
     private int acuracia;
     private String nome;

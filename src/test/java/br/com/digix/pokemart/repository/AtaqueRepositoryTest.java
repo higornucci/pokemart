@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import br.com.digix.pokemart.builders.AtaqueBuilder;
 import br.com.digix.pokemart.models.Ataque;
+import br.com.digix.pokemart.models.enums.Categoria;
 
 @DataJpaTest
 public class AtaqueRepositoryTest {
@@ -44,6 +45,17 @@ public class AtaqueRepositoryTest {
         ataqueRepository.save(ataque);
 
         List<Ataque> ataqueRetornado = ataqueRepository.findByNomeContainingIgnoreCase(nome);
+
+        Assertions.assertTrue(ataqueRetornado.contains(ataque));
+    }
+
+    @Test
+    public void deve_buscar_por_categoria() throws Exception {
+        Categoria categoria = Categoria.ESPECIAL;
+        Ataque ataque = new AtaqueBuilder().comCategoria(categoria).construir();
+        ataqueRepository.save(ataque);
+
+        List<Ataque> ataqueRetornado = ataqueRepository.findByCategoria(categoria);
 
         Assertions.assertTrue(ataqueRetornado.contains(ataque));
     }

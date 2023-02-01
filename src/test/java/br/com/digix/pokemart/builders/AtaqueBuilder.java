@@ -45,4 +45,9 @@ public class AtaqueBuilder {
         return this;
     }
 
+    public AtaqueBuilder comCategoria(Categoria categoria) {
+        this.categoria = categoria;
+        return this;
+    }
+
 }
