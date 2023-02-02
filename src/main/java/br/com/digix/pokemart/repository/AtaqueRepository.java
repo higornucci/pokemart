@@ -11,6 +11,5 @@ import br.com.digix.pokemart.models.enums.Categoria;
 @Repository
 public interface AtaqueRepository extends CrudRepository<Ataque, Long> {
     List<Ataque> findByNomeContainingIgnoreCase(String nome);
-
     List<Ataque> findByCategoria(Categoria categoria);
 }

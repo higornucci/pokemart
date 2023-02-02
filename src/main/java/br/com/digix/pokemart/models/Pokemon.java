@@ -2,6 +2,13 @@ package br.com.digix.pokemart.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import br.com.digix.pokemart.models.exceptions.AlturaInvalidaException;
 import br.com.digix.pokemart.models.exceptions.FelicidadeInvalidaException;
 import br.com.digix.pokemart.models.exceptions.NaoPossuiAtaqueException;
@@ -10,17 +17,25 @@ import br.com.digix.pokemart.models.exceptions.PesoInvalidoException;
 import br.com.digix.pokemart.models.exceptions.QuantidadeDeAtaquesInvalidaException;
 import br.com.digix.pokemart.models.exceptions.TipoInvalidoException;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Entity
 @Getter
+@NoArgsConstructor
 public class Pokemon {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nome;
     private char genero;
     private float altura;
     private float peso;
     private int felicidade;
     private int nivel;
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Ataque> ataques;
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Tipo> tipos;
 
     public Pokemon(String nome, char genero, float altura, float peso, int felicidade, int nivel, List<Ataque> ataques, List<Tipo> tipos) throws FelicidadeInvalidaException, AlturaInvalidaException, PesoInvalidoException, NivelInvalidoException, NaoPossuiAtaqueException, QuantidadeDeAtaquesInvalidaException, TipoInvalidoException {

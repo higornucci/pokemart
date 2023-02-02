@@ -77,4 +77,9 @@ public class PokemonBuilder {
         this.tipos = tipos;
         return this;
     }
+
+    public PokemonBuilder comNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
 }

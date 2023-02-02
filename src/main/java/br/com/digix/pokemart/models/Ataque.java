@@ -24,12 +24,14 @@ public class Ataque {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int forca;
+
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
     private int acuracia;
     private String nome;
     private String descricao;
     private int pontosDePoder;
+    
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Tipo tipo;
 
