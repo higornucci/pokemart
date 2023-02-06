@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +20,7 @@ public class Tipo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonInclude(Include.NON_NULL)
     private Long id;
     @Column(length = 60, nullable = false)
     private String nome;
