@@ -9,15 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import br.com.digix.pokemart.models.enums.Categoria;
 import br.com.digix.pokemart.models.exceptions.AcuraciaInvalidaException;
 import br.com.digix.pokemart.models.exceptions.ForcaInvalidaException;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@JsonCreator))
 public class Ataque {
 
     @Id

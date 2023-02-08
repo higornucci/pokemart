@@ -7,15 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@JsonCreator))
 public class Tipo {
 
     @Id
@@ -33,6 +36,10 @@ public class Tipo {
         this.nome = nome;
         this.cor = cor;
         this.simbolo = simbolo;
+    }
+
+    public void alterar(String nome) {
+        this.nome = nome;
     }
     
 }
