@@ -102,5 +102,9 @@ public class Pokemon {
             throw new FelicidadeInvalidaException();
         }
     }
+
+    public void alterar(String nome) {
+        this.nome = nome;
+    }
     
 }
