@@ -56,7 +56,7 @@ public class PokemonControllerTest {
 		this.mockMvc
 				.perform(get("/pokemons"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(containsString("pikachu")));
+				.andExpect(content().string(containsString("Pikachu")));
 	}
 	@Test
 	public void deve_remover_um_pokemon_pelo_id() throws Exception {
